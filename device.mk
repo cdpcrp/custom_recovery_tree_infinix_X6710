@@ -6,6 +6,7 @@
 #
 
 LOCAL_PATH := device/infinix/X6710
+
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -15,17 +16,17 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service
+    android.hardware.boot@1.2-service \
+    android.hardware.boot@1.2-mtkimpl \
+    android.hardware.boot@1.2-mtkimpl.recovery
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctrl \
+    update_engine_client
 
 PRODUCT_PACKAGES += \
-    bootctrl.mt6893
-
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
     bootctrl.mt6893 \
-    libgptutils \
-    libz \
-    libcutils
+    bootctrl.mt6893.recovery
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -33,3 +34,13 @@ PRODUCT_PACKAGES += \
     update_engine \
     update_verifier \
     update_engine_sideload
+
+# fastbootd
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    fastbootd
+    
+# Health HAL
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service
