@@ -1,4 +1,4 @@
-# Android device tree for Infinix Infinix X6710 (Infinix-X6710)
+# Android device tree for Infinix Infinix X6710 (X6710)
 
 ```
 #
