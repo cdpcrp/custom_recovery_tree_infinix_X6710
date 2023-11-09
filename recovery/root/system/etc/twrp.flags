@@ -8,11 +8,8 @@
 /vbmeta_vendor            emmc      /dev/block/by-name/vbmeta_vendor                       flags=display=vbmeta_vendor;slotselect
 /vbmeta_system            emmc      /dev/block/by-name/vbmeta_system                       flags=display=vbmeta_system;slotselect
 
-# Removable (if exist)
-auto                      auto      /devices/platform/externdevice*                        flags=display=auto
-auto                      vfat      /devices/platform/usb_xhci*                            flags=display=auto
-auto                      vfat      /devices/platform/soc/11201000.usb0/11200000.xhci*     flags=display=auto
-auto                      vfat      /devices/platform/usb0/11200000.xhci*                  flags=display=auto
+# Removable Partitions
+/external_sd              auto     /dev/block/mmcblk0p1         /dev/block/mmcblk0   flags=display="Micro SD Card";storage;wipeingui;removable
 
 # Other
 /tranfs                   ext4      /dev/block/by-name/tranfs                              flags=display=tranfs
