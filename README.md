@@ -1,4 +1,4 @@
-# Android device tree for Infinix Infinix X6710 (X6710)
+# Custom Recovery Tree - Infinix Note 30 VIP (X6710)
 
 ```
 #
