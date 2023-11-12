@@ -1,26 +1,27 @@
 # Android File-System Flags (TWRP)
 
 # Boot
-/boot                     emmc      /dev/block/by-name/boot                                flags=display=boot;slotselect
+/boot                     emmc      /dev/block/by-name/boot                                flags=display=boot;backup=1;flashimg=1;slotselect
 
 # VBMeta
-/vbmeta                   emmc      /dev/block/by-name/vbmeta                              flags=display=vbmeta
-/vbmeta_vendor            emmc      /dev/block/by-name/vbmeta_vendor                       flags=display=vbmeta_vendor;slotselect
-/vbmeta_system            emmc      /dev/block/by-name/vbmeta_system                       flags=display=vbmeta_system;slotselect
+/vbmeta                   emmc      /dev/block/by-name/vbmeta                              flags=display=vbmeta;backup=1;flashimg=1;slotselect
+/vbmeta_vendor            emmc      /dev/block/by-name/vbmeta_vendor                       flags=display=vbmeta_vendor;slotselect;backup=1;flashimg=1;slotselect
+/vbmeta_system            emmc      /dev/block/by-name/vbmeta_system                       flags=display=vbmeta_system;slotselect;backup=1;flashimg=1;slotselect
 
 # Removable Partitions
 /external_sd              auto     /dev/block/mmcblk0p1         /dev/block/mmcblk0   flags=display="Micro SD Card";storage;wipeingui;removable
+/usb_otg                  auto     /dev/block/sda1              /dev/block/sda   /dev/block/sdd1     flags=display="USB-OTG";storage;wipeingui;removable;backup=0
 
 # Other
 /tranfs                   ext4      /dev/block/by-name/tranfs                              flags=display=tranfs
-/protect_f                ext4      /dev/block/by-name/protect1                            flags=display=protect_f
-/protect_s                ext4      /dev/block/by-name/protect2                            flags=display=protect_s
-/nvdata                   ext4      /dev/block/by-name/nvdata                              flags=display=nvdata
-/nvcfg                    ext4      /dev/block/by-name/nvcfg                               flags=display=nvcfg
-/persist                  ext4      /dev/block/by-name/persist                             flags=display=persist
+/protect_f                ext4      /dev/block/by-name/protect1                            flags=display=protect_f;backup=1
+/protect_s                ext4      /dev/block/by-name/protect2                            flags=display=protect_s;backup=1
+/nvdata                   ext4      /dev/block/by-name/nvdata                              flags=display=nvdata;backup=1
+/nvcfg                    ext4      /dev/block/by-name/nvcfg                               flags=display=nvcfg;backup=1
+/persist                  ext4      /dev/block/by-name/persist                             flags=display=persist;backup=1
 /para                     emmc      /dev/block/by-name/para                                flags=display=para
-/persistent               emmc      /dev/block/by-name/frp                                 flags=display=persistent
-/nvram                    emmc      /dev/block/by-name/nvram                               flags=display=nvram
+/persistent               emmc      /dev/block/by-name/frp                                 flags=display=persistent;backup=1
+/nvram                    emmc      /dev/block/by-name/nvram                               flags=display=nvram;backup=1
 /proinfo                  emmc      /dev/block/by-name/proinfo                             flags=display=proinfo
 /bootloader               emmc      /dev/block/by-name/lk                                  flags=display=bootloader
 /bootloader2              emmc      /dev/block/by-name/lk2                                 flags=display=bootloader2
@@ -50,6 +51,6 @@
 /pi_img                   emmc      /dev/block/by-name/pi_img                              flags=display=pi_img
 /boot_para                emmc      /dev/block/by-name/boot_para                           flags=display=boot_para
 /odmdtbo                  emmc      /dev/block/by-name/odmdtbo                             flags=display=odmdtbo
-/dtbo                     emmc      /dev/block/by-name/dtbo                                flags=display=dtbo
+/dtbo                     emmc      /dev/block/by-name/dtbo                                flags=display=dtbo;backup=1;flashimg=1;slotselect
 /otp                      emmc      /dev/block/by-name/otp                                 flags=display=otp
 /tkv                      emmc      /dev/block/by-name/tkv                                 flags=display=tkv
