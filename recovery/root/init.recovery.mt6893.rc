@@ -53,7 +53,6 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     user root
     group root drmrpc readproc
     disabled
-    writepid /dev/cpuset/foreground/tasks
     seclabel u:r:recovery:s0
 
 service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
