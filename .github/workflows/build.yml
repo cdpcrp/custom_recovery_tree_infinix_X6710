@@ -83,7 +83,7 @@ jobs:
         _Note: Flash at your own risk. This build were still in the process of testing._
         ### Resources
         * [TWRP Manifest](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp/tree/twrp-12.1)
-        * [Device Tree](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710.git/tree/android-12.1)
+        * [Device Tree](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/tree/twrp-12.1)
         ### Notes
         * Successful installation of .zip and .img files
         * Decryption support (A13)
@@ -91,15 +91,15 @@ jobs:
         * Terminal Console works fine
         * ADB/Sideload/MTP/FastbootD 
         ### Trigger Event
-        _This build were compiled by triggering branch twrp-12.1 of current tree, triggered by a push event in version makefile._
-        * [Last Commit](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710.git/commit/${{ env.COMMIT_ID }})
+        _This build were compiled by triggering branch twrp-12.1 of current tree, triggered by a push event in [version makefile](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/blob/twrp-12.1/version.mk)._
+        * [Last Commit](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/commit/${{ env.COMMIT_ID }})
         " > changelog.txt
 
     - name: Upload to Release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          twrp/out/target/product/X6710/recovery-${{ github.run_id }}.img
-        name: TWRP Test Build for Infinix Note 30 VIP (X6710) // ${{ env.BUILD_DATE }}
+          twrp/out/target/product/X6710/twrp-boot-${{ github.run_id }}.img
+        name: TWRP Release Build for Infinix Note 30 VIP (X6710) // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}
         body_path: changelog.txt
