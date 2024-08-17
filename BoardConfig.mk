@@ -157,11 +157,16 @@ RECOVERY_SDCARD_ON_DATA := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 1200
-TW_SCREEN_BLANK_ON_BOOT := true
+TW_NO_SCREEN_BLANK := true
 TW_INCLUDE_RESETPROP := true
+TW_INCLUDE_LIBRESETPROP :=true
+TW_INCLUDE_FASTBOOTD := true
+TW_INCLUDE_TZDATA := true
 TW_EXCLUDE_APEX := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_HAS_MTP := true
+TW_HAS_NO_RECOVERY_PARTITION := true
+TW_SKIP_ADDITIONAL_FSTAB := true # We are skipping additional fstab search/generation as we already have enough file-system table define in the tree
 
 # Debug
 TWRP_INCLUDE_LOGCAT := true
