@@ -37,6 +37,8 @@ subsystem dma_heap
 /dev/tty                  0666   root       root
 /dev/random               0666   root       root
 /dev/urandom              0666   root       root
+# Aside from kernel threads, only prng_seeder needs access to HW RNG
+/dev/hw_random            0400   prng_seeder prng_seeder
 /dev/ashmem*              0666   root       root
 /dev/binder               0666   root       root
 /dev/hwbinder             0666   root       root
@@ -67,8 +69,8 @@ subsystem dma_heap
 # CDMA radio interface MUX
 /dev/ppp                  0660   radio      vpn
 
-/dev/kvm                  0600   system     system
-/dev/vhost-vsock          0600   system	    system
+/dev/kvm                  0666   root       root
+/dev/vhost-vsock          0666   root       root
 
 # sysfs properties
 /sys/devices/platform/trusty.*      trusty_version        0440  root   log
@@ -80,6 +82,6 @@ subsystem dma_heap
 /sys/devices/virtual/misc/uhid/*/leds/* brightness   0664  system system
 /sys/devices/virtual/misc/uhid/*/leds/* multi_intensity   0664  system system
 
-#SDD: added by long.jin5 for system monitor feature. Start
+#SDD: add TESSCR-19159 by chonglin.yang 2023/5/12 for system monitor feature. Start
 /dev/ensignal   0666   root   root
-#SDD: added by long.jin5 for system monitor feature. End
+#SDD: add TESSCR-19159 by chonglin.yang 2023/5/12 for system monitor feature. End
