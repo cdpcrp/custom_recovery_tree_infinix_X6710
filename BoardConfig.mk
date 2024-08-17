@@ -176,5 +176,9 @@ TARGET_USES_LOGD := true
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true # Making sure recovery build don't have kernel in it--well, no kernel at all in tree anyway... LOL!
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true # We are now moving to vendor_boot, hmmm, wait, really?
 
+# Vendor Modules
+TW_LOAD_VENDOR_MODULES := true
+TW_LOAD_VENDOR_BOOT_MODULES := true
+
 # Version
 include $(DEVICE_PATH)/version.mk
