@@ -1,25 +1,14 @@
 # Custom Recovery Tree
-
 Build your own custom recovery (TWRP) for Infinix Note 30 VIP (aka Infinix-X6710 or just X6710).
 
-![Infinix Note 30 VIP](https://fdn2.gsmarena.com/vv/pics/infinix/infinix-x6710-note-30-vip-3.jpg)
+# Reminder
+Please note that this branch, `twrp-14`, can only be use to build and flash for version not lower than Android 14. The recent major update, Android 14, have significant changes; as they change boot header to version 3 and move recovery resources to vendor_boot.
 
-|Basic               |Spec Sheet                                                    |
-|--                  |--                                                            |
-|CPU                 |Octa-core (1x3.0 GHz Cortex-A78 & 3x2.6 GHz Cortex-A78 & 4x2.0 GHz Cortex-A55))      |
-|Chipset             |Mediatek Dimensity 8050 (6 nm)                                     |
-|GPU                 |Mali-G77 MC9                                              |
-|Memory              |8/12GB RAM                                                     |
-|Android Version     |13 (XOS 13)                                               |
-|Storage             |256GB                                                      |
+# Download
+For TWRP image, just go to [release](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/releases) section and search for the most latest build that has `[A14]` tag in its title, excluding those build with `[TEST]` and `pre-release` tag in it.
 
-## Working Feature
-- Internal Storage (Decrypted)
-- External Storage (SD Card)
-- ADB/MTP
-
-## Notes
-Some features needs more test.
+# Installation
+Once you find the right TWRP image for you, you should be able to see the instruction on how to install it. Flash at your own risk.
 
 ```
 #
