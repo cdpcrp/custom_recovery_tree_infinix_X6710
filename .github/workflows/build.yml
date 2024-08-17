@@ -3,7 +3,7 @@ name: TWRP
 on:
   push:
     branches:
-      - 'twrp-12.1'
+      - 'twrp-13'
 
     paths:
       - 'version.mk'
@@ -60,7 +60,7 @@ jobs:
     - name: Clone Device Tree
       run: |
         cd twrp
-        git clone https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710.git -b twrp-12.1 ./device/infinix/X6710
+        git clone https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710.git -b twrp-13 ./device/infinix/X6710
         cd device/infinix/X6710
         echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
@@ -83,7 +83,7 @@ jobs:
         _Note: Flash at your own risk. This build were still in the process of testing._
         ### Resources
         * [TWRP Manifest](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp/tree/twrp-12.1)
-        * [Device Tree](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/tree/twrp-12.1)
+        * [Device Tree](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/tree/twrp-13)
         ### Notes
         * Successful installation of .zip and .img files
         * Decryption support (A13)
@@ -91,7 +91,7 @@ jobs:
         * Terminal Console works fine
         * ADB/Sideload/MTP/FastbootD 
         ### Trigger Event
-        _This build were compiled by triggering branch twrp-12.1 of current tree, triggered by a push event in [version makefile](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/blob/twrp-12.1/version.mk)._
+        _This build were compiled by triggering branch twrp-13 of current tree, triggered by a push event in [version makefile](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/blob/twrp-13/version.mk)._
         * [Last Commit](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/commit/${{ env.COMMIT_ID }})
         " > changelog.txt
 
