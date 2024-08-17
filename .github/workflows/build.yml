@@ -3,7 +3,7 @@ name: TWRP
 on:
   push:
     branches:
-      - 'twrp-12.1'
+      - 'twrp-14'
 
     paths:
       - 'version.mk'
@@ -17,7 +17,7 @@ jobs:
       contents: write
     steps:
     - name: Check Out
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Cleanup
       uses: rokibhasansagar/slimhub_actions@main
@@ -25,7 +25,7 @@ jobs:
     - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
       with:
-        swap-size-gb: 12
+        swap-size-gb: 24
 
     - name: Prepare the environment
       run: |
@@ -36,7 +36,7 @@ jobs:
         sudo apt -y install libncurses5
 
     - name: Install OpenJDK
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
         java-version: '8'
@@ -55,12 +55,13 @@ jobs:
         git config --global user.name "Carlo Dee"
         git config --global user.email "carlodee.official@proton.me"
         repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
+        sed -i '/<remove-project name="platform\/external\/gflags"  \/>/d' .repo/manifests/remove-minimal.xml
         repo sync -j$(nproc --all) --force-sync
 
     - name: Clone Device Tree
       run: |
         cd twrp
-        git clone https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710.git -b twrp-12.1 ./device/infinix/X6710
+        git clone https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710.git -b twrp-14 ./device/infinix/X6710
         cd device/infinix/X6710
         echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
@@ -69,37 +70,34 @@ jobs:
         cd twrp
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
-        lunch twrp_X6710-eng && make clean && make bootimage -j$(nproc --all)
+        lunch twrp_X6710-eng && make clean && make vendorbootimage -j$(nproc --all)
         cd out/target/product/X6710
-        mv boot.img twrp-boot-${{ github.run_id }}.img
-        echo "Done building your twrp-boot-${{ github.run_id }}.img"
+        mv vendor_boot.img twrp-vendor_boot-${{ github.run_id }}.img
+        echo "Done building your twrp-vendor_boot-${{ github.run_id }}.img"
 
     - name: Set Properties
       run: |
         echo "BUILD_DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
         echo -e \
         "
-        ## Unofficial Build for Infinix Note 30 VIP (X6710)
-        _Note: Flash at your own risk. This build were still in the process of testing._
+        ## [A14] Unofficial Build for Infinix Note 30 VIP (X6710)
+        _Note: Flash at your own risk. This build were still in the process of testing. And please, only flash this on Android 14 (recovery-as-vendor_boot, header v3)._
         ### Resources
         * [TWRP Manifest](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp/tree/twrp-12.1)
-        * [Device Tree](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/tree/twrp-12.1)
+        * [Device Tree](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/tree/twrp-14)
         ### Notes
-        * Successful installation of .zip and .img files
-        * Decryption support (A13)
-        * SD Card & USB-OTG
-        * Terminal Console works fine
-        * ADB/Sideload/MTP/FastbootD 
+        * To be edited...
         ### Trigger Event
-        _This build were compiled by triggering branch twrp-12.1 of current tree, triggered by a push event in [version makefile](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/blob/twrp-12.1/version.mk)._
+        _This build were compiled by triggering branch twrp-14 of current tree, triggered by a push event in [version makefile](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/blob/twrp-14/version.mk)._
         * [Last Commit](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/commit/${{ env.COMMIT_ID }})
         " > changelog.txt
 
     - name: Upload to Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         files: |
-          twrp/out/target/product/X6710/twrp-boot-${{ github.run_id }}.img
+          twrp/out/target/product/X6710/twrp-vendor_boot-${{ github.run_id }}.img
         name: TWRP Release Build for Infinix Note 30 VIP (X6710) // ${{ env.BUILD_DATE }}
+        prerelease: true
         tag_name: ${{ github.run_id }}
         body_path: changelog.txt
