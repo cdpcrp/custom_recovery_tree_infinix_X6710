@@ -80,7 +80,7 @@ jobs:
         echo "BUILD_DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
         echo -e \
         "
-        ## [A14] Unofficial Build for Infinix Note 30 VIP (X6710)
+        ## Android 14 - Unofficial Build
         _Note: Flash at your own risk. This build were still in the process of testing. And please, only flash this on Android 14 (recovery-as-vendor_boot, header v3)._
         ### Resources
         * [TWRP Manifest](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp/tree/twrp-12.1)
@@ -97,7 +97,7 @@ jobs:
       with:
         files: |
           twrp/out/target/product/X6710/twrp-vendor_boot-${{ github.run_id }}.img
-        name: TWRP Release Build for Infinix Note 30 VIP (X6710) // ${{ env.BUILD_DATE }}
+        name: Release Build [A14] // ${{ env.BUILD_DATE }}
         prerelease: true
         tag_name: ${{ github.run_id }}
         body_path: changelog.txt
