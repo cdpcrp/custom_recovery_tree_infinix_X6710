@@ -17,7 +17,7 @@ jobs:
       contents: write
     steps:
     - name: Check Out
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Cleanup
       uses: rokibhasansagar/slimhub_actions@main
@@ -25,7 +25,7 @@ jobs:
     - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
       with:
-        swap-size-gb: 12
+        swap-size-gb: 24
 
     - name: Prepare the environment
       run: |
@@ -36,7 +36,7 @@ jobs:
         sudo apt -y install libncurses5
 
     - name: Install OpenJDK
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
         java-version: '8'
@@ -79,27 +79,25 @@ jobs:
         echo "BUILD_DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
         echo -e \
         "
-        ## Unofficial Build for Infinix Note 30 VIP (X6710)
-        _Note: Flash at your own risk. This build were still in the process of testing._
+        ## Android 13 - Unofficial Build
+        _Note: Flash at your own risk. This build were still in the process of testing. And please, only flash this on Android 13 (recovery-as-boot), because in recent update, Android 14, they switched to recovery-as-vendor_boot, header v3._
         ### Resources
         * [TWRP Manifest](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp/tree/twrp-12.1)
         * [Device Tree](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/tree/twrp-13)
-        ### Notes
-        * Successful installation of .zip and .img files
-        * Decryption support (A13)
-        * SD Card & USB-OTG
-        * Terminal Console works fine
-        * ADB/Sideload/MTP/FastbootD 
+        ### Working Features
+        * To be edited...
+        ### How to Install
+        * To be edited...
         ### Trigger Event
         _This build were compiled by triggering branch twrp-13 of current tree, triggered by a push event in [version makefile](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/blob/twrp-13/version.mk)._
         * [Last Commit](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/commit/${{ env.COMMIT_ID }})
         " > changelog.txt
 
     - name: Upload to Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         files: |
           twrp/out/target/product/X6710/twrp-boot-${{ github.run_id }}.img
-        name: TWRP Release Build for Infinix Note 30 VIP (X6710) // ${{ env.BUILD_DATE }}
+        name: Release Build [A13] // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}
         body_path: changelog.txt
