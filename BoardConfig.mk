@@ -41,11 +41,14 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 TARGET_OTA_ASSERT_DEVICE := Infinix-X6710
 
 # Board Boot Header
-BOARD_BOOT_HEADER_VERSION := 3 # Switch to version 3 since A14 update, moving recovery resources to vendor_boot
+# Switch to version 3 since A14 update, moving recovery resources to vendor_boot
+BOARD_BOOT_HEADER_VERSION := 3
 
 # Board Default Values
-BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2 # Switch to --vendor_cmdline since header v3
-BOARD_PAGE_SIZE := 4096 # From 2048, switch to 4096 since header v3
+# Switch to --vendor_cmdline since header v3
+BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
+# From 2048, switch to 4096 since header v3
+BOARD_PAGE_SIZE := 4096
 BOARD_KERNEL_BASE := 0x40078000
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_RAMDISK_OFFSET := 0x11088000
@@ -91,7 +94,8 @@ BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
 # Kernel
 TARGET_NO_KERNEL := true
-BOARD_KERNEL_IMAGE_NAME := Image # Just defining it, to avoid unncessary error while building...
+# Just defining it, to avoid unncessary error while building...
+BOARD_KERNEL_IMAGE_NAME := Image
 
 # Kernel - source
 TARGET_KERNEL_CONFIG := X6710_defconfig
@@ -101,13 +105,17 @@ TARGET_KERNEL_SOURCE := kernel/infinix/X6710
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions
-BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_PAGE_SIZE * 64)
+# (BOARD_PAGE_SIZE * 64)
+BOARD_FLASH_BLOCK_SIZE := 262144
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
-BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := $(BOARD_BOOTIMAGE_PARTITION_SIZE) # Define vendor_boot image size, as we will be moving recovery resource to it
-BOARD_SUPER_PARTITION_SIZE := 9126805504 # TODO: Fix hardcoded value
+# Define vendor_boot image size, as we will be moving recovery resource to it
+BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := $(BOARD_BOOTIMAGE_PARTITION_SIZE)
+# TODO: Fix hardcoded value
+BOARD_SUPER_PARTITION_SIZE := 9126805504
 BOARD_SUPER_PARTITION_GROUPS := infinix_dynamic_partitions
 BOARD_INFINIX_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product system_ext
-BOARD_INFINIX_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
+# TODO: Fix hardcoded value
+BOARD_INFINIX_DYNAMIC_PARTITIONS_SIZE := 9122611200
 
 # Partitions - file type
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := erofs
@@ -130,7 +138,8 @@ TARGET_VENDOR_PROP := $(DEVICE_PATH)/vendor.prop
 TARGET_USES_MKE2FS := true
 
 # Recovery - Ramdisk
-BOARD_RAMDISK_USE_LZ4 := true # Since moving recovery resources to vendor_boot, ramdisk compression type became lz4-l from gzip
+# Since moving recovery resources to vendor_boot, ramdisk compression type became lz4-l from gzip
+BOARD_RAMDISK_USE_LZ4 := true
 
 # Recovery - sdcard ?
 RECOVERY_SDCARD_ON_DATA := true
@@ -175,11 +184,14 @@ TW_EXCLUDE_APEX := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_HAS_MTP := true
 TW_HAS_NO_RECOVERY_PARTITION := true
-TW_SKIP_ADDITIONAL_FSTAB := true # We are skipping additional fstab search/generation as we already have enough file-system table define in the tree
+# We are skipping additional fstab search/generation as we already have enough file-system table define in the tree
+TW_SKIP_ADDITIONAL_FSTAB := true
 
 # Vendor Boot
-BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true # Making sure recovery build don't have kernel in it--well, no kernel at all in tree anyway... LOL!
-BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true # We are now moving to vendor_boot, hmmm, wait, really?
+# Making sure recovery build don't have kernel in it--well, no kernel at all in tree anyway... LOL!
+BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
+# We are now moving to vendor_boot, hmmm, wait, really?
+BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 
 # Vendor Modules
 TW_LOAD_VENDOR_MODULES := true
