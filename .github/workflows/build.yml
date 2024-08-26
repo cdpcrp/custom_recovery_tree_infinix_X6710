@@ -12,7 +12,6 @@ jobs:
   build:
     name: Build TWRP by ${{ github.actor }}
     runs-on: ubuntu-20.04
-    if: github.event.repository.owner.id == github.event.sender.id
     permissions:
       contents: write
     steps:
@@ -61,7 +60,7 @@ jobs:
     - name: Clone Device Tree
       run: |
         cd twrp
-        git clone https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710.git -b twrp-14 ./device/infinix/X6710
+        git clone https://github.com/cdpcrp/custom_recovery_tree_infinix_X6710.git -b twrp-14 ./device/infinix/X6710
         cd device/infinix/X6710
         echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
@@ -84,12 +83,12 @@ jobs:
         _Note: Flash at your own risk. This build were still in the process of testing. And please, only flash this on Android 14 (recovery-as-vendor_boot, header v3)._
         ### Resources
         * [TWRP Manifest](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp/tree/twrp-12.1)
-        * [Device Tree](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/tree/twrp-14)
+        * [Device Tree](https://github.com/cdpcrp/custom_recovery_tree_infinix_X6710/tree/twrp-14)
         ### Notes
         * To be edited...
         ### Trigger Event
-        _This build were compiled by triggering branch twrp-14 of current tree, triggered by a push event in [version makefile](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/blob/twrp-14/version.mk)._
-        * [Last Commit](https://github.com/cd-Crypton/custom_recovery_tree_infinix_X6710/commit/${{ env.COMMIT_ID }})
+        _This build were compiled by triggering branch twrp-14 of current tree, triggered by a push event in [version makefile](https://github.com/cdpcrp/custom_recovery_tree_infinix_X6710/blob/twrp-14/version.mk)._
+        * [Last Commit](https://github.com/cdpcrp/custom_recovery_tree_infinix_X6710/commit/${{ env.COMMIT_ID }})
         " > changelog.txt
 
     - name: Upload to Release
