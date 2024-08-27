@@ -184,8 +184,6 @@ TW_EXCLUDE_APEX := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_HAS_MTP := true
 TW_HAS_NO_RECOVERY_PARTITION := true
-# We are skipping additional fstab search/generation as we already have enough file-system table define in the tree
-TW_SKIP_ADDITIONAL_FSTAB := true
 
 # Vendor Boot
 # Making sure recovery build don't have kernel in it--well, no kernel at all in tree anyway... LOL!
