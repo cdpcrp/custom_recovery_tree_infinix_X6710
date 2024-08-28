@@ -200,4 +200,4 @@ TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 
 # Version
-include $(DEVICE_PATH)/version.mk
+TW_DEVICE_VERSION := A14-C_0002
